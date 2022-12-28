@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>众筹网</title>
+    <!-- jquery -->
+    <script type="text/javascript" th:src="@{/static/js/jquery.js}"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" th:href="@{/static/bootstrap/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/static/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- zTree -->
+    <link type="text/css" rel="stylesheet" th:href="@{/static/ztree/css/zTreeStyle/zTreeStyle.css}">
+    <script type="text/javascript" th:src="@{/static/ztree/js/jquery.ztree.all.js}"></script>
+    <!-- layer -->
+    <script type="text/javascript" th:src="@{/static/layer/layer.js}"></script>
+</head>
+<body>
+<!-- 容器一 -->
+<div class="container">
+    <!-- 第一行：页眉 -->
+    <div class="row sticky-top alert alert-secondary">
+        <h1>管理员登录</h1>
+    </div>
+    <!-- 第二行：内容 -->
+    <div class="row">
+        <!-- 第一列：空位 -->
+        <div class="col"></div>
+        <!-- 第二列：登录 -->
+        <div class="col-3 p-3 border">
+            <!-- 登录表单 -->
+            <form th:action="@{/admin/do/login.html}" method="post">
+                <!-- 账户 -->
+                <div class="mb-3">
+                    <label for="loginAcct" class="form-label">账户</label>
+                    <input type="text" class="form-control" name="loginAcct" id="loginAcct" aria-describedby="loginHelp">
+                    <div id="loginHelp" class="form-text">请不要将账户和密码轻易告诉任何人</div>
+                    <span th:text="${exception}"></span>
+                </div>
+                <!-- 密码 -->
+                <div class="mb-3">
+                    <label for="userPwd" class="form-label">密码</label>
+                    <input type="password" class="form-control" name="userPwd" id="userPwd">
+                </div>
+                <!-- 记住我 -->
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="check">
+                    <label class="form-check-label" for="check">记住我</label>
+                </div>
+                <!-- 提交 -->
+                <button type="submit" class="btn btn-primary">登录</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

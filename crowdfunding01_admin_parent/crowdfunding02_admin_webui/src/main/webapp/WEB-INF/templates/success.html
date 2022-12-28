@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>众筹网</title>
+</head>
+<body>
+<h1>成功</h1>
+<p>当前时间：<span th:text="${#dates.createNow()}"></span></p>
+<p th:text="${testScope}"></p>
+<p th:text="${session.testSessionScope}"></p>
+<p th:text="${application.testApplicationScope}"></p>
+</body>
+</html>

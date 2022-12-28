@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>众筹网</title>
+    <!-- jquery -->
+    <script type="text/javascript" th:src="@{/static/js/jquery.js}"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" th:href="@{/static/bootstrap/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/static/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- zTree -->
+    <link type="text/css" rel="stylesheet" th:href="@{/static/ztree/css/zTreeStyle/zTreeStyle.css}">
+    <script type="text/javascript" th:src="@{/static/ztree/js/jquery.ztree.all.js}"></script>
+    <!-- layer -->
+    <script type="text/javascript" th:src="@{/static/layer/layer.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#testLayerBtn").click(function () {
+                layer.msg("layer测试");
+            });
+            $("#testSendAjaxBtn").click(function () {
+                console.log("ajax函数前...");
+                $.ajax({
+                    url: "test/ajax/async",
+                    type: "post",
+                    async: false, // 关闭异步 ajax ，开启同步 ajax
+                    dataType: "text",
+                    success: function (response) {
+                        console.log("ajax.success函数：" + response);
+                    }
+                });
+                console.log("ajax函数后...");
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>首页</h1>
+<ol>
+    <li><a th:href="@{/success}">点击测试</a></li>
+    <li><a th:href="@{/test/exceptionMapperByXML}">测试基于XML的异常映射</a></li>
+    <li><a th:href="@{/test/exceptionMapperByAnno}">测试基于注解的异常映射</a></li>
+    <li><a th:href="@{/test/crowdUtil}">测试CrowdUtil工具方法</a></li>
+    <li><a th:href="@{/admin/to/login.html}">管理员登录</a></li>
+    <li><a th:href="@{/test/ServletAPI}">使用ServletAPI向request域对象共享数据</a></li>
+    <li><a th:href="@{/test/ModelAndView}">使用ModelAndView向request域对象共享数据</a></li>
+    <li><a th:href="@{/test/Model}">使用Model向request域对象共享数据</a></li>
+    <li><a th:href="@{/test/Map}">使用Map向request域对象共享数据</a></li>
+    <li><a th:href="@{/test/ModelMap}">使用ModelMap向request域对象共享数据</a></li>
+    <li><a th:href="@{/test/session}">向session域共享数据</a></li>
+    <li><a th:href="@{/test/application}">向application域共享数据</a></li>
+    <li>
+        <button id="testSendAjaxBtn">发送Ajax请求</button>
+    </li>
+    <li>
+        <button id="testLayerBtn">测试layer弹窗</button>
+    </li>
+</ol>
+</body>
+</html>

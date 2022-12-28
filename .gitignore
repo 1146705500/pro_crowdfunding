@@ -1,0 +1,5 @@
+# 项目排除路径
+/crowdfunding01_admin_parent/crowdfunding02_admin_webui/target/
+/crowdfunding01_admin_parent/crowdfunding03_admin_component/target/
+/crowdfunding01_admin_parent/crowdfunding04_admin_entity/target/
+/crowdfunding05_common_util/target/

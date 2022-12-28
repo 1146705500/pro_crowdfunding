@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>众筹网</title>
+    <!-- jquery -->
+    <script type="text/javascript" th:src="@{/static/js/jquery.js}"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" th:href="@{/static/bootstrap/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/static/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- zTree -->
+    <link type="text/css" rel="stylesheet" th:href="@{/static/ztree/css/zTreeStyle/zTreeStyle.css}">
+    <script type="text/javascript" th:src="@{/static/ztree/js/jquery.ztree.all.js}"></script>
+    <!-- layer -->
+    <script type="text/javascript" th:src="@{/static/layer/layer.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btn1").click(function () {
+                // 相当于浏览器的返回按钮
+                window.history.back();
+            });
+            $("#btn2").click(function () {
+                window.location.href = "/pro_crowdfunding/admin/to/login.html";
+            });
+        });
+    </script>
+</head>
+<body>
+<!-- 容器 -->
+<div class="container">
+    <!-- 页眉 -->
+    <div class="row sticky-top alert alert-secondary">
+        <h1>出错了！</h1>
+    </div>
+    <!-- 内容 -->
+    <div class="row">
+        <div class="col">
+            <p>当前时间：<span th:text="${#dates.createNow()}"></span></p>
+            <p>众筹网系统消息：<span th:text="${exception}"></span></p>
+            <button class="btn btn-success" id="btn1">返回上一步</button>
+            <button class="btn btn-primary" id="btn2">前往登录</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

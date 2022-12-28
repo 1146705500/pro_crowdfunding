@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>众筹网</title>
+    <!-- jquery -->
+    <script type="text/javascript" th:src="@{/static/js/jquery.js}"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" th:href="@{/static/bootstrap/css/bootstrap.min.css}">
+    <script type="text/javascript" th:src="@{/static/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- zTree -->
+    <link type="text/css" rel="stylesheet" th:href="@{/static/ztree/css/zTreeStyle/zTreeStyle.css}">
+    <script type="text/javascript" th:src="@{/static/ztree/js/jquery.ztree.all.js}"></script>
+    <!-- layer -->
+    <script type="text/javascript" th:src="@{/static/layer/layer.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 给右移按钮绑定单击响应函数
+            $("#toRightBtn").click(function () {
+                // select 是标签选择器
+                // :eq(0) 表示选择页面上的第一个
+                // :eq(1) 表示选择页面上的第二个
+                // “>” 表示选择子元素
+                // :selected 表示选择“被选中的” option
+                // .appendTo() 能够将 jQuery 对象追加到指定的位置
+                $("select:eq(0)>option:selected").appendTo("select:eq(1)");
+            });
+
+            // 给左移按钮绑定单击响应函数
+            $("#toLeftBtn").click(function () {
+                $("select:eq(1)>option:selected").appendTo("select:eq(0)");
+            });
+
+            // 给提交按钮绑定单击响应函数
+            $("#submitBtn").click(function () {
+                // select 默认只提交选中的项目
+                // 所以在点击提交时把 option 全部设置为 selected
+                $("select:eq(1)>option").prop("selected", "selected");
+            });
+        });
+    </script>
+</head>
+<body>
+<!-- 容器 -->
+<div class="container">
+    <!-- 行 页眉 -->
+    <div class="row sticky-top alert alert-secondary">
+        <h1>分配角色</h1>
+    </div>
+    <!-- 行 工具栏 -->
+    <div class="row">
+        <div class="col"></div>
+    </div>
+    <!-- 行 内容 -->
+    <form th:action="@{/assign/do/assign/role.html}" method="post">
+        <input type="hidden" name="adminId" th:value="${adminId}">
+        <div class="row">
+            <div class="col">
+                <label class="form-label">未分配的角色</label>
+                <select class="form-select" size="10" multiple="multiple">
+                    <option th:each="unAssignedRole : ${unAssignedRoleList}" th:value="${unAssignedRole.id}"
+                            th:text="${unAssignedRole.name}"></option>
+                </select>
+            </div>
+            <div class="col-1">
+                <input type="button" class="btn btn-info m-1" id="toRightBtn" value="右移>>"><br>
+                <input type="button" class="btn btn-warning m-1" id="toLeftBtn" value="<<左移"><br>
+                <input type="submit" class="btn btn-success m-1" id="submitBtn" value="<保存>"><br>
+            </div>
+            <div class="col">
+                <label class="form-label">已分配的角色</label>
+                <select class="form-select" name="roleIdList" size="10" multiple="multiple">
+                    <option th:each="assignedRole : ${assignedRoleList}" th:value="${assignedRole.id}"
+                            th:text="${assignedRole.name}"></option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
